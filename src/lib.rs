@@ -8,6 +8,12 @@ use alloy_primitives::{Address, B256, ruint::aliases::U64};
 use alloy_sol_types::sol;
 use stylus_sdk::{prelude::*, storage::*, stylus_core::errors::MethodError};
 
+
+
+//Contract Address on Sepolia : 0x468edc5b2fe9d1c919f2377cbe0ccb16f32ead29
+//verify contract on sepolia using https://sepolia.arbiscan.io/address/0x468edc5b2fe9d1c919f2377cbe0ccb16f32ead29
+//contract transaction hash : 0x7ec3ca01306a0218364f9715c20733b1f7208190b3bd866ac7739900216f05cf
+
 sol! {
     event ContentRegistered(
         bytes32 indexed sha256hash,
