@@ -10,10 +10,10 @@ The contract has been successfully compiled into optimized WebAssembly (Wasm), d
 
 | Parameter | Value |
 | :--- | :--- |
-| **Contract Address** | `0x468edc5b2fe9d1c919f2377cbe0ccb16f32ead29` |
+| **Contract Address** | `0xd5a4e9185cbcea881f2c76b07732335250537820` |
 | **Deployment Tx Hash** | `0x7ec3ca01306a0218364f9715c20733b1f7208190b3bd866ac7739900216f05cf` |
 | **Network** | Arbitrum Sepolia Testnet |
-| **Explorer Link** | [View on Arbiscan](https://sepolia.arbiscan.io/address/0x468edc5b2fe9d1c919f2377cbe0ccb16f32ead29) |
+| **Explorer Link** | [View on Arbiscan](https://sepolia.arbiscan.io/address/0xd5a4e9185cbcea881f2c76b07732335250537820) |
 
 ---
 

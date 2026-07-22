@@ -9,8 +9,8 @@ use stylus_sdk::{prelude::*, storage::*, stylus_core::errors::MethodError};
 
 
 
-//Contract Address : 0xd5a4e9185cbcea881f2c76b07732335250537820
-// Contract Transactions hash : 0x5a1d85789fe587632740d7c23908e6d0ace9c6ecdc106a121f7166fd19dd5266
+//Contract Address :  0xeb09ca3b844693817479cf33fd88cdf02c2711fd
+// Contract Transactions hash : 0x4ed05785a8f74f889ab1b87bf98222cc272124890ca78a7e1138685b69c88992
 
 
 sol_interface! {
@@ -57,6 +57,7 @@ pub struct VeritraceRegistry {
     pub registry: StorageMap<B256, ContentRecord>,
     pub owner: StorageAddress,
     pub initialized: StorageBool,
+    pub verified_publishers: StorageMap<Address, StorageString>,
 }
 
 #[public]
@@ -216,5 +217,46 @@ impl VeritraceRegistry {
         }
 
         Ok(())
+    }
+
+    pub fn add_verified_publisher(
+        &mut self,
+        publisher: Address,
+        org_name: String,
+    ) -> Result<(), Vec<u8>> {
+        let sender = self.vm().msg_sender();
+        let owner = self.owner.get();
+        if sender != owner {
+            return Err(b"Not authorized".to_vec());
+        }
+        let mut name_ref = self.verified_publishers.setter(publisher);
+        name_ref.set_str(&org_name);
+        Ok(())
+    }
+
+    pub fn remove_verified_publisher(
+        &mut self,
+        publisher: Address,
+    ) -> Result<(), Vec<u8>> {
+        let sender = self.vm().msg_sender();
+        let owner = self.owner.get();
+        if sender != owner {
+            return Err(b"Not authorized".to_vec());
+        }
+        let mut name_ref = self.verified_publishers.setter(publisher);
+        name_ref.set_str("");
+        Ok(())
+    }
+
+    pub fn is_verified_publisher(
+        &self,
+        publisher: Address,
+    ) -> Result<(String, bool), Vec<u8>> {
+        let name_ref = self.verified_publishers.getter(publisher);
+        let name = name_ref.get_string();
+        if name.is_empty() {
+            return Ok((name, false));
+        }
+        Ok((name, true))
     }
 }
